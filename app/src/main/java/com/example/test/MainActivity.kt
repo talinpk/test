@@ -1,0 +1,70 @@
+package com.example.test
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.SeekBar
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var editTextDescription: EditText
+    private lateinit var seekBarSize: SeekBar
+    private lateinit var checkBoxUpperCase: CheckBox
+    private lateinit var checkBoxNumbers: CheckBox
+    private lateinit var checkBoxSpecialChars: CheckBox
+    private lateinit var buttonAlterar: Button
+    private lateinit var buttonEditar: Button
+    private lateinit var buttonCancelar: Button
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        // Inicialize os componentes de UI
+        editTextDescription = findViewById(R.id.editTextDescription)
+        seekBarSize = findViewById(R.id.seekBarSize)
+        checkBoxUpperCase = findViewById(R.id.checkBoxUpperCase)
+        checkBoxNumbers = findViewById(R.id.checkBoxNumbers)
+        checkBoxSpecialChars = findViewById(R.id.checkBoxSpecialChars)
+        buttonAlterar = findViewById(R.id.buttonAlterar)
+        buttonEditar = findViewById(R.id.buttonEditar)
+        buttonCancelar = findViewById(R.id.buttonCancelar)
+
+        // Configurar um ouvinte de clique para o botão "Alterar"
+        buttonAlterar.setOnClickListener {
+            // Obtenha os valores das configurações do usuário
+            val descricao = editTextDescription.text.toString()
+            val tamanho = seekBarSize.progress
+            val usarLetrasMaiusculas = checkBoxUpperCase.isChecked
+            val usarNumeros = checkBoxNumbers.isChecked
+            val usarCaracteresEspeciais = checkBoxSpecialChars.isChecked
+
+            // Chame uma função para gerar a senha com base nas configurações do usuário
+            val senhaGerada = gerarSenha(descricao, tamanho, usarLetrasMaiusculas, usarNumeros, usarCaracteresEspeciais)
+
+            // Exiba a senha gerada ou faça algo com ela
+            // Por exemplo, exiba-a em um TextView ou em um Toast
+        }
+
+        // Configurar um ouvinte de clique para o botão "Editar"
+        buttonEditar.setOnClickListener {
+            // Implemente a ação desejada quando o botão "Editar" for clicado
+        }
+
+        // Configurar um ouvinte de clique para o botão "Cancelar"
+        buttonCancelar.setOnClickListener {
+            // Implemente a ação desejada quando o botão "Cancelar" for clicado
+        }
+    }
+
+    // Função para gerar a senha com base nas configurações do usuário
+    private fun gerarSenha(descricao: String, tamanho: Int, usarLetrasMaiusculas: Boolean, usarNumeros: Boolean, usarCaracteresEspeciais: Boolean): String {
+        // Implemente a lógica de geração de senha aqui
+        // Você pode usar bibliotecas ou escrever sua própria lógica para gerar a senha com base nas configurações fornecidas
+        // Retorne a senha gerada como uma String
+        return ""
+    }
+}
