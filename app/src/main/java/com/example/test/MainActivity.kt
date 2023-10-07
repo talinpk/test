@@ -43,7 +43,13 @@ class MainActivity : AppCompatActivity() {
             val usarCaracteresEspeciais = checkBoxSpecialChars.isChecked
 
             // Chame uma função para gerar a senha com base nas configurações do usuário
-            val senhaGerada = gerarSenha(descricao, tamanho, usarLetrasMaiusculas, usarNumeros, usarCaracteresEspeciais)
+            val senhaGerada = gerarSenha(
+                descricao,
+                tamanho,
+                usarLetrasMaiusculas,
+                usarNumeros,
+                usarCaracteresEspeciais
+            )
 
             // Exiba a senha gerada ou faça algo com ela
             // Por exemplo, exiba-a em um TextView ou em um Toast
@@ -60,11 +66,40 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // Função para gerar a senha com base nas configurações do usuário
-    private fun gerarSenha(descricao: String, tamanho: Int, usarLetrasMaiusculas: Boolean, usarNumeros: Boolean, usarCaracteresEspeciais: Boolean): String {
-        // Implemente a lógica de geração de senha aqui
-        // Você pode usar bibliotecas ou escrever sua própria lógica para gerar a senha com base nas configurações fornecidas
-        // Retorne a senha gerada como uma String
-        return ""
+    private fun gerarSenha(
+        descricao: String,
+        tamanho: Int,
+        usarLetrasMaiusculas: Boolean,
+        usarNumeros: Boolean,
+        usarCaracteresEspeciais: Boolean
+    ): String {
+        val caracteresPermitidos = StringBuilder()
+
+        if (usarLetrasMaiusculas) {
+            caracteresPermitidos.append("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+        }
+        if (usarNumeros) {
+            caracteresPermitidos.append("0123456789")
+        }
+        if (usarCaracteresEspeciais) {
+            caracteresPermitidos.append("!@#$%^&*()_+{}[]|\\:;<>,.?/~")
+        }
+
+        val tamanhoCaracteresPermitidos = caracteresPermitidos.length
+
+        if (tamanhoCaracteresPermitidos == 0) {
+            return ""
+        }
+
+        val senhaGerada = StringBuilder()
+
+        for (i in 0 until tamanho) {
+            val indiceAleatorio = (0 until tamanhoCaracteresPermitidos).random()
+            val caractereAleatorio = caracteresPermitidos[indiceAleatorio]
+            senhaGerada.append(caractereAleatorio)
+        }
+
+        return senhaGerada.toString()
     }
 }
+
